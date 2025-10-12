@@ -1,8 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useCartStore } from '../lib/store';
 import { formatCurrency } from '../lib/format';
-import Button from '../component/atoms/Button';
-import CartItem from '../component/molecules/CartItem';
+import Button from '../components/atoms/Button';
+import CartItem from '../components/molecules/CartItem';
 
 export default function CartPage() {
   const navigate = useNavigate();
@@ -110,4 +110,5 @@ export default function CartPage() {
       </div>
     </div>
   );
+
 }
