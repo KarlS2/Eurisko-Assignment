@@ -3,9 +3,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useCartStore } from '../lib/store';
 import { placeOrder } from '../lib/api';
 import { formatCurrency } from '../lib/format';
-import Button from '../component/atoms/Button';
-import Input from '../component/atoms/input';
-import Spinner from '../component/atoms/Spinner';
+import Button from '../components/atoms/Button';
+import Input from '../components/atoms/input';
+import Spinner from '../components/atoms/Spinner';
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
@@ -203,4 +203,5 @@ export default function CheckoutPage() {
       </div>
     </div>
   );
+
 }
