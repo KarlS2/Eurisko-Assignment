@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getOrderStatus, OrderStatus } from '../lib/api';
 import { formatDate } from '../lib/format';
-import Button from '../component/atoms/Button';
-import Badge from '../component/atoms/Badge';
+import Button from '../components/atoms/Button';
+import Badge from '../components/atoms/Badge';
 
 export default function OrderStatusPage() {
   const { id } = useParams<{ id: string }>();
@@ -155,4 +155,5 @@ export default function OrderStatusPage() {
       </div>
     </div>
   );
+
 }
