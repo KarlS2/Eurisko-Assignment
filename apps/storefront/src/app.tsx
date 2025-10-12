@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from './component/organisms/Header';
-import SupportPanel from './component/organisms/SupportPanel';
+import Header from './components/organisms/Header';
+import SupportPanel from './components/organisms/SupportPanel';
 
 export default function App() {
   const [isSupportOpen, setIsSupportOpen] = useState(false);
@@ -28,4 +28,5 @@ export default function App() {
       </footer>
     </div>
   );
+
 }
