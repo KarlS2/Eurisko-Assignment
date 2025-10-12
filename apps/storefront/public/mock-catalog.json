@@ -1,0 +1,236 @@
+[
+  {
+    "id": "prod_001",
+    "title": "iPhone 15 Pro Max 256GB",
+    "price": 1199.99,
+    "image": "https://images.unsplash.com/photo-1696446702717-baa16ae2a01f?w=400",
+    "tags": ["smartphones", "apple", "flagship"],
+    "stockQty": 24,
+    "description": "Latest iPhone with A17 Pro chip, titanium design, and advanced camera system with 5x optical zoom."
+  },
+  {
+    "id": "prod_002",
+    "title": "Samsung Galaxy S24 Ultra",
+    "price": 1299.99,
+    "image": "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400",
+    "tags": ["smartphones", "samsung", "android"],
+    "stockQty": 18,
+    "description": "Premium Android flagship with S Pen, 200MP camera, and AI-powered features."
+  },
+  {
+    "id": "prod_003",
+    "title": "MacBook Pro 14-inch M3",
+    "price": 1999.99,
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400",
+    "tags": ["laptops", "apple", "professional"],
+    "stockQty": 12,
+    "description": "Powerful laptop with M3 chip, Liquid Retina XDR display, and up to 22-hour battery life."
+  },
+  {
+    "id": "prod_004",
+    "title": "PlayStation 5 Console",
+    "price": 499.99,
+    "image": "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400",
+    "tags": ["gaming", "consoles", "playstation"],
+    "stockQty": 8,
+    "description": "Next-gen gaming console with 4K 120Hz output, ultra-fast SSD, and DualSense controller."
+  },
+  {
+    "id": "prod_005",
+    "title": "Xbox Series X",
+    "price": 499.99,
+    "image": "https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=400",
+    "tags": ["gaming", "consoles", "xbox"],
+    "stockQty": 15,
+    "description": "Most powerful Xbox ever with 4K gaming, ray tracing, and Game Pass compatibility."
+  },
+  {
+    "id": "prod_006",
+    "title": "AirPods Pro 2nd Gen",
+    "price": 249.99,
+    "image": "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=400",
+    "tags": ["audio", "apple", "wireless", "accessories"],
+    "stockQty": 45,
+    "description": "Premium wireless earbuds with adaptive audio, active noise cancellation, and USB-C charging."
+  },
+  {
+    "id": "prod_007",
+    "title": "Sony WH-1000XM5 Headphones",
+    "price": 399.99,
+    "image": "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400",
+    "tags": ["audio", "headphones", "wireless", "sony"],
+    "stockQty": 32,
+    "description": "Industry-leading noise canceling headphones with 30-hour battery and premium sound quality."
+  },
+  {
+    "id": "prod_008",
+    "title": "iPad Air 11-inch M2",
+    "price": 599.99,
+    "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400",
+    "tags": ["tablets", "apple", "productivity"],
+    "stockQty": 28,
+    "description": "Versatile tablet with M2 chip, Liquid Retina display, and Apple Pencil Pro support."
+  },
+  {
+    "id": "prod_009",
+    "title": "Logitech MX Master 3S Mouse",
+    "price": 99.99,
+    "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400",
+    "tags": ["accessories", "peripherals", "mouse", "productivity"],
+    "stockQty": 67,
+    "description": "Professional wireless mouse with ergonomic design, silent clicks, and 8K DPI sensor."
+  },
+  {
+    "id": "prod_010",
+    "title": "Mechanical Gaming Keyboard RGB",
+    "price": 159.99,
+    "image": "https://images.unsplash.com/photo-1595225476474-87563907a212?w=400",
+    "tags": ["gaming", "peripherals", "keyboard", "accessories"],
+    "stockQty": 41,
+    "description": "Premium mechanical keyboard with Cherry MX switches, RGB lighting, and programmable keys."
+  },
+  {
+    "id": "prod_011",
+    "title": "Samsung Galaxy Watch 6",
+    "price": 299.99,
+    "image": "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=400",
+    "tags": ["wearables", "smartwatch", "samsung", "fitness"],
+    "stockQty": 36,
+    "description": "Advanced smartwatch with heart rate monitoring, sleep tracking, and 40+ workout modes."
+  },
+  {
+    "id": "prod_012",
+    "title": "Apple Watch Series 9",
+    "price": 399.99,
+    "image": "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400",
+    "tags": ["wearables", "smartwatch", "apple", "fitness"],
+    "stockQty": 29,
+    "description": "Most advanced Apple Watch with double tap gesture, all-day battery, and health sensors."
+  },
+  {
+    "id": "prod_013",
+    "title": "Nintendo Switch OLED",
+    "price": 349.99,
+    "image": "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=400",
+    "tags": ["gaming", "consoles", "nintendo", "portable"],
+    "stockQty": 22,
+    "description": "Hybrid gaming console with vibrant OLED screen, 64GB storage, and enhanced audio."
+  },
+  {
+    "id": "prod_014",
+    "title": "Anker PowerBank 20000mAh",
+    "price": 49.99,
+    "image": "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=400",
+    "tags": ["accessories", "charging", "portable", "power"],
+    "stockQty": 98,
+    "description": "High-capacity portable charger with 65W fast charging, USB-C PD, and dual ports."
+  },
+  {
+    "id": "prod_015",
+    "title": "Dell UltraSharp 27\" 4K Monitor",
+    "price": 649.99,
+    "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400",
+    "tags": ["monitors", "displays", "4k", "professional"],
+    "stockQty": 14,
+    "description": "Professional 4K monitor with IPS Black technology, 99% sRGB coverage, and USB-C hub."
+  },
+  {
+    "id": "prod_016",
+    "title": "Razer DeathAdder V3 Gaming Mouse",
+    "price": 69.99,
+    "image": "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=400",
+    "tags": ["gaming", "peripherals", "mouse", "razer"],
+    "stockQty": 53,
+    "description": "Lightweight wireless gaming mouse with 30K DPI sensor and 90-hour battery life."
+  },
+  {
+    "id": "prod_017",
+    "title": "SanDisk 1TB Extreme SSD",
+    "price": 129.99,
+    "image": "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=400",
+    "tags": ["storage", "accessories", "ssd", "portable"],
+    "stockQty": 76,
+    "description": "Rugged portable SSD with 1050MB/s read speeds, IP55 water resistance, and USB-C."
+  },
+  {
+    "id": "prod_018",
+    "title": "Logitech C920 HD Pro Webcam",
+    "price": 79.99,
+    "image": "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=400",
+    "tags": ["accessories", "webcam", "streaming", "productivity"],
+    "stockQty": 61,
+    "description": "Full HD 1080p webcam with stereo audio, auto light correction, and tripod mount."
+  },
+  {
+    "id": "prod_019",
+    "title": "Google Pixel 8 Pro",
+    "price": 999.99,
+    "image": "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400",
+    "tags": ["smartphones", "google", "android", "camera"],
+    "stockQty": 19,
+    "description": "AI-powered smartphone with Google Tensor G3 chip, best-in-class camera, and 7 years updates."
+  },
+  {
+    "id": "prod_020",
+    "title": "JBL Flip 6 Bluetooth Speaker",
+    "price": 129.99,
+    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400",
+    "tags": ["audio", "speakers", "bluetooth", "portable"],
+    "stockQty": 84,
+    "description": "Portable waterproof speaker with powerful JBL sound, 12-hour battery, and PartyBoost."
+  },
+  {
+    "id": "prod_021",
+    "title": "ASUS ROG Gaming Laptop RTX 4060",
+    "price": 1499.99,
+    "image": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400",
+    "tags": ["laptops", "gaming", "asus", "high-performance"],
+    "stockQty": 9,
+    "description": "Powerful gaming laptop with RTX 4060, 144Hz display, and advanced cooling system."
+  },
+  {
+    "id": "prod_022",
+    "title": "Belkin 3-in-1 Wireless Charger",
+    "price": 149.99,
+    "image": "https://images.unsplash.com/photo-1591290619762-c588986cf38d?w=400",
+    "tags": ["accessories", "charging", "wireless", "apple"],
+    "stockQty": 47,
+    "description": "Premium charging station for iPhone, Apple Watch, and AirPods with Qi2 fast charging."
+  },
+  {
+    "id": "prod_023",
+    "title": "SteelSeries Arctis Nova Pro Wireless",
+    "price": 349.99,
+    "image": "https://images.unsplash.com/photo-1599669454699-248893623440?w=400",
+    "tags": ["gaming", "audio", "headset", "wireless"],
+    "stockQty": 25,
+    "description": "Premium gaming headset with active noise cancellation, 360° spatial audio, and hot-swap battery."
+  },
+  {
+    "id": "prod_024",
+    "title": "Lenovo ThinkPad X1 Carbon Gen 11",
+    "price": 1799.99,
+    "image": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400",
+    "tags": ["laptops", "business", "lenovo", "professional"],
+    "stockQty": 11,
+    "description": "Ultra-light business laptop with Intel i7, 14\" 2.8K display, and military-grade durability."
+  },
+  {
+    "id": "prod_025",
+    "title": "Rode NT-USB Mini Microphone",
+    "price": 99.99,
+    "image": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400",
+    "tags": ["audio", "accessories", "microphone", "streaming"],
+    "stockQty": 38,
+    "description": "Professional USB microphone for podcasting, streaming, and content creation with studio quality."
+  },
+  {
+    "id": "prod_026",
+    "title": "Wireless Bluetooth Headphones",
+    "price": 79.99,
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400",
+    "tags": ["audio", "wireless"],
+    "stockQty": 45,
+    "description": "Premium wireless headphones with active noise cancellation."
+}
+]
