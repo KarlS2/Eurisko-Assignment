@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { listProducts, sortProducts, filterProductsByTag, Product } from '../lib/api';
 import { useCartStore } from '../lib/store';
-import ProductCard from '../component/molecules/ProductCard';
-import SearchBar from '../component/molecules/SearchBar';
-import Spinner from '../component/atoms/Spinner';
+import ProductCard from '../components/molecules/ProductCard';
+import SearchBar from '../components/molecules/SearchBar';
+import Spinner from '../components/atoms/Spinner';
 
 export default function CatalogPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -139,4 +139,5 @@ export default function CatalogPage() {
       )}
     </div>
   );
+
 }
