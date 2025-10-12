@@ -3,10 +3,10 @@ import { useParams, Link } from 'react-router-dom';
 import { getProduct, getRelatedProducts, Product } from '../lib/api';
 import { useCartStore } from '../lib/store';
 import { formatCurrency } from '../lib/format';
-import Button from '../component/atoms/Button';
-import Badge from '../component/atoms/Badge';
-import Spinner from '../component/atoms/Spinner';
-import ProductCard from '../component/molecules/ProductCard';
+import Button from '../components/atoms/Button';
+import Badge from '../components/atoms/Badge';
+import Spinner from '../components/atoms/Spinner';
+import ProductCard from '../components/molecules/ProductCard';
 
 export default function ProductPage() {
   const { id } = useParams<{ id: string }>();
@@ -197,4 +197,5 @@ export default function ProductPage() {
       )}
     </div>
   );
+
 }
