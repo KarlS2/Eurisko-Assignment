@@ -1,0 +1,30 @@
+{
+  "name": "shoplite-api",
+  "version": "1.0.0",
+  "description": "Shoplite Week 5 API with Karobot Assistant",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "node tests/api.test.js",
+    "test:integration": "node tests/integration2.test.js",
+    "test:assistant": "jest tests/assistant.test.js",
+    "test:intent": "node tests/intent.test.js",
+    "test:identity": "node tests/identity.test.js",
+    "test:function": "node tests/function.test.js",
+    "test:all": "npm run test:intent && npm run test:identity && npm run test:function && npm run test && npm run test:integration"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.19.2",
+    "js-yaml": "^4.1.0",
+    "mongodb": "^6.20.0",
+    "mongoose": "^8.5.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1"
+  }
+}
