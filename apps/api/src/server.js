@@ -10,7 +10,7 @@ const productsRouter = require('./routes/products');
 const ordersRouter = require('./routes/orders');
 const analyticsRouter = require('./routes/analytics');
 const dashboardRouter = require('./routes/dashboard');
-const assistantRouter = require('./routes/assistant'); // NEW: Assistant routes
+const assistantRouter = require('./routes/assistant'); 
 const orderStatusSSE = require('./sse/order-status');
 
 // Import middleware
@@ -86,4 +86,5 @@ process.on('SIGTERM', () => {
 process.on('SIGINT', () => {
   console.log('SIGINT received, shutting down gracefully...');
   process.exit(0);
+
 });
