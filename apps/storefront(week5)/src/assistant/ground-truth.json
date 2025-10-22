@@ -1,0 +1,142 @@
+[
+  {
+    "qid": "Q01",
+    "category": "Seller",
+    "question": "How long does it take for seller account verification to complete?",
+    "answer": "Seller account verification typically takes 2-3 business days. During this time, the verification team reviews submitted documents including business licenses, tax registration certificates, and government-issued ID to ensure compliance with legal requirements and platform policies.",
+    "keywords": ["verification", "2-3 business days", "seller", "documents", "business"]
+  },
+  {
+    "qid": "Q02",
+    "category": "Shipping",
+    "question": "What are the shipping timeframes for standard delivery?",
+    "answer": "Standard shipping typically takes 5-7 business days for delivery. Expedited shipping takes 2-3 business days, and express overnight shipping delivers within 1 business day for orders placed before 2 PM.",
+    "keywords": ["standard shipping", "5-7 business days", "delivery", "expedited", "express"]
+  },
+  {
+    "qid": "Q03",
+    "category": "Account",
+    "question": "What is the minimum password requirement?",
+    "answer": "Passwords must be a minimum of 8 characters and include uppercase letters, lowercase letters, numbers, and a special character. This ensures account security for all users.",
+    "keywords": ["password", "8 characters", "uppercase", "lowercase", "numbers", "special character"]
+  },
+  {
+    "qid": "Q04",
+    "category": "Fees",
+    "question": "What commission rate do Basic tier sellers pay?",
+    "answer": "Basic tier sellers pay a flat 12% commission on each sale plus a $0.30 transaction fee per order. Professional tier sellers pay $39.99 monthly with reduced 8% commission plus the same $0.30 transaction fee.",
+    "keywords": ["12%", "commission", "Basic tier", "$0.30", "transaction fee", "Professional"]
+  },
+  {
+    "qid": "Q05",
+    "category": "Listings",
+    "question": "How many images are required minimum for a product listing?",
+    "answer": "Product listings require a minimum of 3 images, but 7-10 images are optimal for better conversion. Images must be high-resolution with minimum 1000x1000 pixels. The primary image should show the product on a white background.",
+    "keywords": ["3 images", "minimum", "high-resolution", "1000x1000 pixels", "product listing"]
+  },
+  {
+    "qid": "Q06",
+    "category": "Performance",
+    "question": "What is the Order Defect Rate threshold that sellers must maintain?",
+    "answer": "Sellers must maintain an Order Defect Rate (ODR) below 1%, meaning fewer than 1 in 100 orders can result in negative customer experiences. High ODR can result in account warnings, restrictions, or suspension.",
+    "keywords": ["1%", "ODR", "Order Defect Rate", "below", "performance", "seller"]
+  },
+  {
+    "qid": "Q07",
+    "category": "Account",
+    "question": "How long do customers have to complete email verification?",
+    "answer": "Email verification must be completed within 24 hours of registration to activate the account. This is mandatory for all users.",
+    "keywords": ["24 hours", "email verification", "mandatory", "registration", "activate"]
+  },
+  {
+    "qid": "Q08",
+    "category": "API",
+    "question": "What is the rate limit for standard API accounts?",
+    "answer": "Standard API accounts are allowed 1000 requests per hour, while premium accounts can make 5000 requests per hour. The API uses OAuth 2.0 protocol for authentication.",
+    "keywords": ["1000 requests", "per hour", "standard", "rate limit", "API", "OAuth"]
+  },
+  {
+    "qid": "Q09",
+    "category": "Seller",
+    "question": "What's the complete process to start selling and what fees should I expect?",
+    "answer": "To become a seller, create an account and navigate to Seller Central. Provide business information including legal name, tax ID, address, and bank details. Submit documents like business licenses and government-issued ID. Verification takes 2-3 business days. Basic tier is free but charges 12% commission plus $0.30 per transaction. Professional tier costs $39.99 monthly with reduced 8% commission.",
+    "keywords": ["Seller Central", "verification", "2-3 business days", "12% commission", "Basic", "Professional", "$39.99", "fees"]
+  },
+  {
+    "qid": "Q10",
+    "category": "Returns",
+    "question": "If I receive a damaged product, what are my options and how long for refund?",
+    "answer": "Log into your account, go to My Orders, select the order, and click Request Return. Upload photos of the damage. Return requests are reviewed within 24-48 hours. For damaged items, you'll receive a prepaid return label. Ship back within 14 days. Refunds are processed within 5-7 business days after the item is received and inspected.",
+    "keywords": ["Request Return", "damaged", "24-48 hours", "prepaid label", "5-7 business days", "photos", "refund"]
+  },
+  {
+    "qid": "Q11",
+    "category": "Orders",
+    "question": "How can I track my order and what notifications will I receive?",
+    "answer": "Track orders through the My Orders section in your account dashboard or by entering your order number on the tracking page. You'll receive real-time updates including order confirmation, payment processing, shipment dispatch, in-transit status, and delivery. Automatic email and SMS notifications are sent at key milestones. Push notifications are available via the mobile app.",
+    "keywords": ["My Orders", "real-time updates", "tracking", "email", "SMS", "notifications", "order number"]
+  },
+  {
+    "qid": "Q12",
+    "category": "Security",
+    "question": "What security measures protect my payment information and data?",
+    "answer": "We use 256-bit SSL/TLS encryption for all data transmissions. Payment transactions never store complete credit card numbers; we use tokenization systems. Payment processing partners maintain PCI DSS compliance. Infrastructure includes firewalls, intrusion detection, and regular security audits. Two-factor authentication is available for enhanced account security.",
+    "keywords": ["256-bit SSL", "encryption", "tokenization", "PCI DSS", "two-factor authentication", "security", "payment"]
+  },
+  {
+    "qid": "Q13",
+    "category": "Support",
+    "question": "What are all the ways I can get help and how quickly will someone respond?",
+    "answer": "We offer live chat (9 AM - 9 PM EST), email support responding within 24 hours, phone support for urgent issues, and a comprehensive help center with over 500 articles. Critical issues like payment failures receive immediate attention (2-4 hours). Standard order inquiries are addressed within 24 hours.",
+    "keywords": ["live chat", "9 AM - 9 PM EST", "email support", "24 hours", "help center", "phone support", "response time"]
+  },
+  {
+    "qid": "Q14",
+    "category": "Cart",
+    "question": "What's the difference between shopping cart and Save for Later?",
+    "answer": "The shopping cart holds items you're ready to purchase. Save for Later allows you to move items out of the active cart without deleting them. For logged-in users, both cart and saved items are preserved indefinitely. Guest users' cart selections are stored for 7 days using browser cookies.",
+    "keywords": ["Save for Later", "cart", "logged-in", "preserved", "guest users", "7 days", "cookies"]
+  },
+  {
+    "qid": "Q15",
+    "category": "Reviews",
+    "question": "How do product reviews work and how can I tell if a review is real?",
+    "answer": "Only verified buyers who purchased and received a product can submit reviews. The review window opens 3 days after delivery and remains available for 90 days. Reviews include 1-5 star ratings and optional written feedback plus photos or videos. All reviews undergo 24-48 hour moderation. Verified purchase badges appear next to reviews from confirmed buyers.",
+    "keywords": ["verified buyers", "Verified purchase", "3 days", "90 days", "moderation", "1-5 stars", "reviews"]
+  },
+  {
+    "qid": "Q16",
+    "category": "Promotions",
+    "question": "How do promotional codes work for sellers and what types can I create?",
+    "answer": "Sellers create custom promotional codes through the Seller Dashboard. Available types include percentage discounts, fixed amount discounts, free shipping codes, and BOGO promotions. You can set usage restrictions including minimum purchase requirements, maximum discount caps, expiration dates, and single-use vs multiple-use codes.",
+    "keywords": ["Seller Dashboard", "promotional codes", "percentage", "fixed amount", "free shipping", "BOGO", "restrictions"]
+  },
+  {
+    "qid": "Q17",
+    "category": "Disputes",
+    "question": "What happens if I have a dispute with a seller?",
+    "answer": "First attempt resolution with the seller through our messaging system. If unresponsive for 48 hours, escalate by opening a dispute from My Orders. Provide details, select the reason, and upload evidence like photos or videos. The seller has 3 business days to respond. Our team reviews all information within 5-7 business days. Buyer Protection covers eligible purchases up to $2,500 per transaction.",
+    "keywords": ["48 hours", "dispute", "Open Dispute", "photos", "videos", "evidence", "3 business days", "5-7 business days", "Buyer Protection", "$2,500"]
+  },
+  {
+    "qid": "Q18",
+    "category": "Performance",
+    "question": "What performance standards must sellers maintain?",
+    "answer": "Sellers must maintain Order Defect Rate (ODR) below 1%, pre-fulfillment cancel rate below 2.5%, late shipment rate under 4%, and valid tracking rate of at least 95%. Response time to customer messages must average under 24 hours, and customer satisfaction rating should be 4.0 stars or higher. Performance reviews occur monthly with 30 days to improve before consequences.",
+    "keywords": ["1%", "ODR", "2.5%", "4%", "95%", "24 hours", "4.0 stars", "performance", "monthly"]
+  },
+  {
+    "qid": "Q19",
+    "category": "API",
+    "question": "How do I use the API to integrate with my inventory system?",
+    "answer": "Register through the Developer Portal to obtain API credentials including an API key and secret. The RESTful API uses OAuth 2.0 authentication with rate limits of 1000 requests per hour for standard accounts. Key endpoints include product listing management, inventory management for real-time stock updates, order processing, and webhook subscriptions for event notifications.",
+    "keywords": ["Developer Portal", "API key", "OAuth 2.0", "1000 requests", "REST", "inventory", "real-time", "webhook", "endpoints"]
+  },
+  {
+    "qid": "Q20",
+    "category": "Mobile App",
+    "question": "What features are available in the mobile app that aren't on the website?",
+    "answer": "The mobile app offers voice search, barcode scanning for price comparisons, push notifications for order updates and deals, biometric authentication for secure login, augmented reality product preview for furniture, one-touch checkout, offline mode for browsing, and location-based features showing nearby seller locations and delivery estimates.",
+    "keywords": ["voice search", "barcode scanning", "push notifications", "biometric", "augmented reality", "one-touch checkout", "offline", "location-based", "mobile app"]
+  }
+]
