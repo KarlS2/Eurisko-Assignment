@@ -1,0 +1,162 @@
+[
+  {
+    "id": "Policy1.1",
+    "question": "How long does seller account verification take?",
+    "answer": "Seller account verification typically takes 2-3 business days. During this time, the verification team reviews submitted documents including business licenses, tax registration certificates, and government-issued ID to ensure compliance with legal requirements and platform policies.",
+    "category": "seller",
+    "keywords": ["verification", "seller", "business", "account", "approval"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Shipping2.1",
+    "question": "What are the shipping timeframes for standard delivery?",
+    "answer": "Standard shipping typically takes 5-7 business days for delivery. Expedited shipping takes 2-3 business days, and express overnight shipping delivers within 1 business day for orders placed before 2 PM. International orders take 10-21 business days depending on destination.",
+    "category": "shipping",
+    "keywords": ["shipping", "delivery", "timeframe", "standard", "express"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Security3.1",
+    "question": "What are the password requirements for Shoplite accounts?",
+    "answer": "Passwords must be a minimum of 8 characters and include uppercase letters, lowercase letters, numbers, and special characters. This ensures account security for all users during registration.",
+    "category": "security",
+    "keywords": ["password", "security", "requirements", "account"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Fees4.1",
+    "question": "What commission rate do Basic tier sellers pay?",
+    "answer": "Basic tier sellers pay a flat 12% commission on each sale plus a $0.30 transaction fee per order. Professional tier sellers who pay the $39.99 monthly subscription benefit from reduced commission rates of 8% plus the same $0.30 transaction fee.",
+    "category": "fees",
+    "keywords": ["commission", "fees", "basic", "seller", "pricing"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Listing5.1",
+    "question": "How many images are required for a product listing?",
+    "answer": "Product listings require a minimum of 3 images, but 7-10 images are optimal for better conversion rates. Images must be high-resolution with minimum 1000x1000 pixels. The primary image should show the product on a white background.",
+    "category": "listing",
+    "keywords": ["images", "product", "listing", "photos", "requirements"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Performance6.1",
+    "question": "What is the Order Defect Rate threshold sellers must maintain?",
+    "answer": "Sellers must maintain an Order Defect Rate (ODR) below 1%, meaning fewer than 1 in 100 orders can result in negative customer experiences. High ODR indicates systemic problems and can result in account warnings, selling restrictions, or permanent suspension.",
+    "category": "performance",
+    "keywords": ["ODR", "defect", "rate", "seller", "metrics"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Account7.1",
+    "question": "How long do customers have to complete email verification?",
+    "answer": "Email verification must be completed within 24 hours of registration to activate the account. This is mandatory for all users during the registration process.",
+    "category": "account",
+    "keywords": ["email", "verification", "registration", "account"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "API8.1",
+    "question": "What is the rate limit for standard API accounts?",
+    "answer": "Standard API accounts are allowed 1000 requests per hour, while premium accounts can make 5000 requests per hour. Exceeding rate limits results in temporary throttling with clear error messages. The API uses OAuth 2.0 protocol for authentication.",
+    "category": "api",
+    "keywords": ["API", "rate", "limit", "requests", "developer"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Returns9.1",
+    "question": "What is the return policy for damaged products?",
+    "answer": "For damaged products, you can request a return through 'My Orders' within 30 days. Shoplite covers return shipping costs and provides a prepaid return label. Return requests are reviewed within 24-48 hours. Once the returned item is received and inspected, refunds are processed within 5-7 business days.",
+    "category": "returns",
+    "keywords": ["return", "refund", "damaged", "policy", "exchange"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Returns9.2",
+    "question": "How long does the refund process take?",
+    "answer": "After a returned item is received and inspected at our facility, refunds are processed within 5-7 business days and credited to your original payment method. The total timeline from initiating return to receiving refund is approximately 2-3 weeks depending on shipping time.",
+    "category": "returns",
+    "keywords": ["refund", "timeline", "processing", "return"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Tracking10.1",
+    "question": "How can I track my order?",
+    "answer": "You can track orders through the 'My Orders' section in your account dashboard or by entering your order number on the tracking page. You'll receive real-time updates including order confirmation, payment processing, shipment dispatch, in-transit status, and delivery confirmation. Email and SMS notifications are sent at key milestones.",
+    "category": "tracking",
+    "keywords": ["tracking", "order", "status", "delivery", "shipment"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Security11.1",
+    "question": "What security measures protect my payment information?",
+    "answer": "Shoplite uses 256-bit SSL/TLS encryption for all data transmissions. We never store complete credit card numbers, using tokenization systems instead. Payment processing partners maintain PCI DSS compliance. We also offer two-factor authentication for enhanced account security and have fraud detection systems monitoring transactions.",
+    "category": "security",
+    "keywords": ["security", "payment", "encryption", "SSL", "protection"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Support12.1",
+    "question": "What customer support options are available?",
+    "answer": "We offer live chat (9 AM - 9 PM EST), email support (24/7 with 24-hour response time), phone support for urgent issues, and a comprehensive help center with over 500 articles. Critical issues like payment failures receive immediate attention (2-4 hours), standard inquiries are addressed within 24 hours.",
+    "category": "support",
+    "keywords": ["support", "help", "customer service", "contact"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Cart13.1",
+    "question": "What's the difference between shopping cart and Save for Later?",
+    "answer": "The shopping cart holds items you're ready to purchase. Cart contents are preserved across sessions for logged-in users. 'Save for Later' allows you to move items out of the active cart without deleting them. For guest users, cart selections are stored for 7 days. Logged-in users maintain their cart and saved items indefinitely.",
+    "category": "shopping",
+    "keywords": ["cart", "save", "wishlist", "shopping"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Reviews14.1",
+    "question": "How do product reviews work?",
+    "answer": "Only verified buyers who have purchased and received a product can submit reviews. The review window opens 3 days after delivery and remains available for 90 days post-purchase. All reviews undergo 24-48 hour moderation. Verified purchase badges appear next to reviews from confirmed buyers.",
+    "category": "reviews",
+    "keywords": ["reviews", "ratings", "verified", "feedback"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Promotions15.1",
+    "question": "How do promotional codes work for sellers?",
+    "answer": "Sellers can create custom promotional codes through the Seller Dashboard, setting discount percentages, usage limits, and validity periods. Available types include percentage discounts, fixed amount discounts, free shipping codes, and BOGO promotions. You can set minimum purchase requirements and expiration dates.",
+    "category": "promotions",
+    "keywords": ["promo", "discount", "coupon", "code", "sale"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Disputes16.1",
+    "question": "What happens if I have a dispute with a seller?",
+    "answer": "First attempt resolution directly with the seller. If unresponsive for 48 hours, open a formal dispute through 'My Orders'. Provide evidence like photos and videos. The seller has 3 business days to respond. Our dispute resolution team reviews cases within 5-7 business days. Buyer Protection covers eligible purchases up to $2,500 per transaction.",
+    "category": "disputes",
+    "keywords": ["dispute", "protection", "resolution", "complaint"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Performance17.1",
+    "question": "What performance standards must sellers maintain?",
+    "answer": "Sellers must maintain: Order Defect Rate (ODR) below 1%, pre-fulfillment cancel rate below 2.5%, late shipment rate under 4%, valid tracking rate of at least 95%, response time under 24 hours, and customer satisfaction rating of 4.0 stars or higher. Reviews occur monthly with 30 days to improve before consequences.",
+    "category": "performance",
+    "keywords": ["seller", "metrics", "performance", "standards"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "API18.1",
+    "question": "How do I get started with the Shoplite API?",
+    "answer": "Register through the Developer Portal to obtain API credentials. The RESTful API uses OAuth 2.0 authentication with rate limits of 1000 requests per hour for standard accounts. Key endpoints include product listing management, inventory management, order processing, and webhook subscriptions for real-time notifications.",
+    "category": "api",
+    "keywords": ["API", "developer", "integration", "webhook"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  },
+  {
+    "id": "Mobile19.1",
+    "question": "What features are available in the mobile app?",
+    "answer": "The mobile app offers voice search, barcode scanning for price comparisons, push notifications for order updates and deals, biometric authentication, augmented reality product preview, one-touch checkout, offline browsing mode, and location-based features for nearby sellers and delivery estimates.",
+    "category": "mobile",
+    "keywords": ["app", "mobile", "features", "smartphone"],
+    "lastUpdated": "2025-10-01T00:00:00Z"
+  }
+]
