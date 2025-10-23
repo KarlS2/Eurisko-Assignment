@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import Input from '../atoms/input';
+import Input from '../atoms/Input';
 import Button from '../atoms/Button';
 
 interface SearchBarProps {
@@ -30,4 +30,5 @@ export default function SearchBar({ onSearch, placeholder = 'Search products...'
       </Button>
     </form>
   );
+
 }
