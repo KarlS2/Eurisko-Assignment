@@ -28,7 +28,7 @@ export default function Header({ onOpenSupport, onOpenLogin }: HeaderProps) {
               Karl Storefront
             </span>
             <span className="text-xl font-bold text-gray-900 sm:hidden">
-              Karl
+              Karl Storefont
             </span>
           </Link>
           
@@ -206,3 +206,4 @@ export default function Header({ onOpenSupport, onOpenLogin }: HeaderProps) {
     </header>
   );
 }
+
