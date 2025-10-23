@@ -2,6 +2,8 @@ This storefront category contains the same old element in the storefront week 4,
 The reason for the new directory is to keep the week 4 intact in case they haven't been graded yet.
 The old elements will be updated in this new version in order to be compatible with the backend.
 
+frontend available on:https://livedrop-karl-sassine.vercel.app/
+
 
 # Karl Storefront - Frontend Application
 
