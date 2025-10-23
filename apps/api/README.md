@@ -2,9 +2,9 @@
 
 **Week 5 Assignment - Full Stack E-Commerce with Intelligent Assistant**
 
-Author: Karl Sassine  
-Course: Full Stack Development  
+Author: Karl Sassine    
 Date:20 October 2025
+Deployed on: https://livedrop-karlsassine.onrender.com
 
 ---
 
