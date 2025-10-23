@@ -93,7 +93,7 @@ export default function OrdersPage() {
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Your Orders</h1>
         <p className="text-sm sm:text-base text-gray-600">
-          Track and manage your order history
+          Track and manage your order history <br />
            An order is never too early, nor too late, it arrives precisely when it means to.
         </p>
       </div>
@@ -213,4 +213,5 @@ export default function OrdersPage() {
     </div>
   );
 }
+
 
