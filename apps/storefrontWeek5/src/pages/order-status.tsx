@@ -1,5 +1,5 @@
 // src/pages/order-status.tsx
-// Updated with SSE live tracking
+// Responsive order status page with SSE live tracking
 
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
@@ -85,18 +85,18 @@ export default function OrderStatusPage() {
   
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[400px] gap-4">
+      <div className="flex flex-col items-center justify-center min-h-[400px] gap-4 px-4">
         <Spinner size="lg" />
-        <p className="text-gray-600">Loading order details...</p>
+        <p className="text-sm sm:text-base text-gray-600">Loading order details...</p>
       </div>
     );
   }
   
   if (!order) {
     return (
-      <div className="text-center py-12">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">Order not found</h1>
-        <p className="text-gray-600 mb-6">
+      <div className="text-center py-8 px-4 sm:py-12">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Order not found</h1>
+        <p className="text-sm sm:text-base text-gray-600 mb-6">
           The order ID you're looking for doesn't exist or may have been entered incorrectly.
         </p>
         <Link to="/">
@@ -125,10 +125,11 @@ export default function OrderStatusPage() {
   const currentStepIndex = statusSteps.findIndex((step) => step.value === order.status);
   
   return (
-    <div className="max-w-3xl mx-auto space-y-8">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8">
+      {/* Page Header */}
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Order Confirmation</h1>
-        <p className="text-gray-600">
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Order Confirmation</h1>
+        <p className="text-sm sm:text-base text-gray-600">
           {isStreaming ? (
             <span className="flex items-center justify-center gap-2">
               <span className="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse" />
@@ -140,38 +141,44 @@ export default function OrderStatusPage() {
         </p>
       </div>
       
+      {/* Stream Error Alert */}
       {streamError && (
         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-          <p className="text-sm text-yellow-800">
+          <p className="text-xs sm:text-sm text-yellow-800">
             <strong>Connection issue:</strong> {streamError}. Showing last known status.
           </p>
         </div>
       )}
       
-      <div className="bg-white rounded-lg border border-gray-200 p-8 space-y-6">
-        <div className="flex items-center justify-between pb-6 border-b border-gray-200">
-          <div>
-            <h2 className="text-sm font-medium text-gray-500">Order Number</h2>
-            <p className="text-2xl font-bold text-gray-900 mt-1 font-mono">
+      {/* Main Order Card */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6 lg:p-8 space-y-6">
+        {/* Order Number and Status */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-6 border-b border-gray-200">
+          <div className="min-w-0 flex-1">
+            <h2 className="text-xs sm:text-sm font-medium text-gray-500">Order Number</h2>
+            <p className="text-lg sm:text-2xl font-bold text-gray-900 mt-1 font-mono break-all">
               {order._id}
             </p>
           </div>
-          <Badge variant={statusVariant[order.status]} size="md">
-            {order.status}
-          </Badge>
+          <div className="flex-shrink-0">
+            <Badge variant={statusVariant[order.status]} size="md">
+              {order.status}
+            </Badge>
+          </div>
         </div>
         
-        <div className="grid sm:grid-cols-2 gap-4">
+        {/* Order Date and Total */}
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <h3 className="text-sm font-medium text-gray-500 mb-1">Order Date</h3>
-            <p className="text-base text-gray-900">
+            <h3 className="text-xs sm:text-sm font-medium text-gray-500 mb-1">Order Date</h3>
+            <p className="text-sm sm:text-base text-gray-900">
               {formatDate(order.createdAt)}
             </p>
           </div>
           
           <div>
-            <h3 className="text-sm font-medium text-gray-500 mb-1">Order Total</h3>
-            <p className="text-base text-gray-900 font-bold">
+            <h3 className="text-xs sm:text-sm font-medium text-gray-500 mb-1">Order Total</h3>
+            <p className="text-sm sm:text-base text-gray-900 font-bold">
               {formatCurrency(order.total)}
             </p>
           </div>
@@ -190,8 +197,8 @@ export default function OrderStatusPage() {
               />
             </div>
             
-            {/* Steps */}
-            <div className="relative flex justify-between">
+            {/* Steps - Desktop and Tablet */}
+            <div className="hidden sm:flex relative justify-between">
               {statusSteps.map((step, index) => {
                 const isCompleted = index <= currentStepIndex;
                 const isCurrent = index === currentStepIndex;
@@ -224,7 +231,7 @@ export default function OrderStatusPage() {
                       )}
                     </div>
                     <span
-                      className={`mt-2 text-sm font-medium transition-colors ${
+                      className={`mt-2 text-sm font-medium transition-colors text-center ${
                         isCompleted ? 'text-gray-900' : 'text-gray-500'
                       }`}
                     >
@@ -234,23 +241,76 @@ export default function OrderStatusPage() {
                 );
               })}
             </div>
+            
+            {/* Steps - Mobile (Vertical) */}
+            <div className="flex sm:hidden flex-col gap-6 relative pl-6">
+              {statusSteps.map((step, index) => {
+                const isCompleted = index <= currentStepIndex;
+                const isCurrent = index === currentStepIndex;
+                
+                return (
+                  <div key={step.value} className="flex items-center gap-4 relative">
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center font-medium transition-all duration-300 flex-shrink-0 ${
+                        isCompleted
+                          ? 'bg-primary-600 text-white'
+                          : 'bg-gray-200 text-gray-500'
+                      } ${isCurrent ? 'ring-4 ring-primary-100' : ''}`}
+                    >
+                      {isCompleted ? (
+                        <svg
+                          className="w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      ) : (
+                        index + 1
+                      )}
+                    </div>
+                    <span
+                      className={`text-base font-medium transition-colors ${
+                        isCompleted ? 'text-gray-900' : 'text-gray-500'
+                      }`}
+                    >
+                      {step.label}
+                    </span>
+                    {/* Vertical connector line */}
+                    {index < statusSteps.length - 1 && (
+                      <div
+                        className={`absolute left-5 top-10 w-0.5 h-6 ${
+                          index < currentStepIndex ? 'bg-primary-600' : 'bg-gray-200'
+                        }`}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
         
         {/* Order Items */}
         <div className="pt-6 border-t border-gray-200">
-          <h3 className="text-lg font-bold text-gray-900 mb-4">Order Items</h3>
+          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4">Order Items</h3>
           <div className="space-y-3">
             {order.items.map((item, index) => (
               <div
                 key={index}
-                className="flex justify-between items-center text-sm"
+                className="flex justify-between items-start gap-4 text-xs sm:text-sm"
               >
-                <div>
-                  <p className="text-gray-900 font-medium">{item.name}</p>
+                <div className="flex-1 min-w-0">
+                  <p className="text-gray-900 font-medium truncate">{item.name}</p>
                   <p className="text-gray-500">Quantity: {item.quantity}</p>
                 </div>
-                <p className="text-gray-900 font-medium">
+                <p className="text-gray-900 font-medium whitespace-nowrap">
                   {formatCurrency(item.price * item.quantity)}
                 </p>
               </div>
@@ -262,16 +322,16 @@ export default function OrderStatusPage() {
         {order.carrier && (
           <div className="space-y-3 pt-6 border-t border-gray-200">
             <div>
-              <h3 className="text-sm font-medium text-gray-500 mb-1">Carrier</h3>
-              <p className="text-base text-gray-900">{order.carrier}</p>
+              <h3 className="text-xs sm:text-sm font-medium text-gray-500 mb-1">Carrier</h3>
+              <p className="text-sm sm:text-base text-gray-900">{order.carrier}</p>
             </div>
             
             {order.trackingNumber && (
               <div>
-                <h3 className="text-sm font-medium text-gray-500 mb-1">
+                <h3 className="text-xs sm:text-sm font-medium text-gray-500 mb-1">
                   Tracking Number
                 </h3>
-                <p className="text-base font-mono text-gray-900">
+                <p className="text-sm sm:text-base font-mono text-gray-900 break-all">
                   {order.trackingNumber}
                 </p>
               </div>
@@ -279,10 +339,10 @@ export default function OrderStatusPage() {
             
             {order.estimatedDelivery && (
               <div>
-                <h3 className="text-sm font-medium text-gray-500 mb-1">
+                <h3 className="text-xs sm:text-sm font-medium text-gray-500 mb-1">
                   Estimated Delivery
                 </h3>
-                <p className="text-base text-gray-900">
+                <p className="text-sm sm:text-base text-gray-900">
                   {formatDate(order.estimatedDelivery)}
                 </p>
               </div>
@@ -296,9 +356,10 @@ export default function OrderStatusPage() {
         </div>
       </div>
       
-      <div className="flex justify-center gap-4">
-        <Link to="/">
-          <Button variant="primary" size="lg">
+      {/* Actions */}
+      <div className="flex justify-center">
+        <Link to="/" className="w-full sm:w-auto">
+          <Button variant="primary" size="lg" fullWidth>
             Continue Shopping
           </Button>
         </Link>
