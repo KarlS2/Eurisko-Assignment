@@ -5,454 +5,831 @@ The old elements will be updated in this new version in order to be compatible w
 frontend available on:https://livedrop-karl-sassine.vercel.app/
 
 
-# Karl Storefront - Frontend Application
+# Shoplite Frontend (Karl storefront)
 
-> **Week 5 Assignment - E-commerce Storefront with Real-time Features & AI Support**
+**Week 5 Assignment - React + TypeScript E-Commerce Storefront**
 
-A fully responsive, production-ready React + TypeScript storefront with real-time order tracking via Server-Sent Events (SSE) and an intelligent AI-powered support assistant.
-
----
-
-## 📋 Table of Contents
-
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Prerequisites](#-prerequisites)
-- [Installation](#-installation)
-- [Environment Setup](#-environment-setup)
-- [Development](#-development)
-- [Project Structure](#-project-structure)
-- [Key Features Walkthrough](#-key-features-walkthrough)
-- [Testing](#-testing)
-- [Deployment](#-deployment)
-- [Browser Compatibility](#-browser-compatibility)
-- [Troubleshooting](#-troubleshooting)
+Author: Karl Sassine    
+Date: 20 October 2025
 
 ---
 
-## ✨ Features
+## 📋 Overview
 
-### Core E-commerce
-- **Product Catalog** - Browse 20+ products with search, filtering, and sorting
-- **Shopping Cart** - Persistent cart with quantity management
-- **Checkout Flow** - Simple checkout with user identification
-- **Order History** - View all past orders with status tracking
+Modern, responsive e-commerce storefront built with React, TypeScript, and Tailwind CSS. Features real-time order tracking (SSE) and integrated intelligent assistant (Karobot).
 
-### Real-time Features
-- **Live Order Tracking** - Server-Sent Events (SSE) for real-time order status updates
-- **Auto-progression** - Orders automatically transition through statuses for demo purposes
-- **Connection Management** - Automatic reconnection with exponential backoff
+### Key Features
 
-### AI-Powered Support
-- **Intelligent Assistant** (Karobot) - Context-aware support bot with:
-  - Intent detection (7+ intent types)
-  - Function calling (order status, product search, customer data)
-  - Policy knowledge grounding with citations
-  - Personality and identity (never reveals AI model)
-  - Multi-turn conversation support
-
-### Admin Features
-- **Admin Dashboard** - Real-time metrics and analytics:
-  - Business metrics (revenue, orders, average order value)
-  - Performance monitoring (API latency, SSE connections)
-  - Assistant analytics (intent distribution, function calls)
-  - System health indicators
-
-### User Experience
-- **Fully Responsive** - Mobile-first design, works on all screen sizes
-- **User Authentication** - Simple email-based identification (no passwords)
-- **Role-based Access** - Admin vs regular user permissions
-- **Persistent State** - Cart and user data persist across sessions
+- ✅ Product catalog with search, filter, and pagination
+- ✅ Shopping cart with persistent state (Zustand)
+- ✅ Real-time order tracking via Server-Sent Events
+- ✅ Integrated support chat with Karobot assistant
+- ✅ Admin dashboard with live metrics
+- ✅ Role-based access control (User/Admin)
+- ✅ Responsive design (mobile-first)
+- ✅ Type-safe with TypeScript
 
 ---
 
-## 🛠 Tech Stack
-
-- **React 18.2** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **React Router 6** - Client-side routing
-- **Zustand** - State management (with persistence)
-- **Tailwind CSS** - Utility-first styling
-- **Vitest** - Unit testing
-- **Storybook** - Component development
-
-### Key Libraries
-- `clsx` - Conditional CSS classes
-- `react-router-dom` - Routing
-- `zustand` - Global state
-
----
-
-## 📦 Prerequisites
-
-- **Node.js** 18+ (LTS recommended)
-- **npm** 9+ or **yarn** 1.22+
-- **Backend API** running (see backend README)
-- Modern web browser with SSE support
-
----
-
-## 🚀 Installation
-
-### 1. Clone Repository
-
-```bash
-git clone (https://github.com/KarlS2/livedrop--KarlSassine)
-cd storefront
+## 🏗️ Architecture
 ```
-
-### 2. Install Dependencies
-
-```bash
-npm install
-```
-
-### 3. Environment Setup
-
-Create `.env` file:
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env`:
-
-```env
-# Development (local backend)
-VITE_API_URL=http://localhost:3000
-
-# Production (deployed backend)
-# VITE_API_URL=https://livedrop-karlsassine.onrender.com
-```
-
-### 4. Start Development Server
-
-```bash
-npm run dev
-```
-
-Application will be available at `http://localhost:3000`
-
----
-
-## 🌍 Environment Setup
-
-### Environment Variables
-
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `VITE_API_URL` | Backend API base URL | `http://localhost:5000` |
-
-**Note:** Vite requires `VITE_` prefix for environment variables to be exposed to the client.
-
-### Backend Requirements
-
-The frontend expects these backend endpoints to be available:
-
-```
-GET    /api/customers?email=...      # Customer lookup
-GET    /api/customers/:id            # Customer details
-GET    /api/products                 # Product list
-GET    /api/products/:id             # Product details
-POST   /api/orders                   # Create order
-GET    /api/orders/:id               # Order details
-GET    /api/orders?customerId=...    # Customer orders
-GET    /api/orders/:id/stream        # SSE order tracking (EventSource)
-POST   /api/assistant/chat           # AI assistant
-GET    /api/assistant/metrics        # Assistant analytics
-GET    /api/dashboard/business-metrics  # Business data
-GET    /api/dashboard/performance    # Performance metrics
-```
-
----
-
-## 🏗 Project Structure
-
-```
-storefront/
+apps/storefront/
 ├── src/
+│   ├── lib/
+│   │   ├── api.ts              # Backend API client
+│   │   ├── config.ts           # Configuration & endpoints
+│   │   ├── sse-client.ts       # SSE connection manager
+│   │   ├── store.ts            # Zustand state management
+│   │   ├── router.tsx          # React Router setup
+│   │   └── format.ts           # Utility functions
+│   ├── pages/
+│   │   ├── catalog.tsx         # Product listing
+│   │   ├── product.tsx         # Product details
+│   │   ├── cart.tsx            # Shopping cart
+│   │   ├── checkout.tsx        # Checkout flow
+│   │   ├── order-status.tsx   # Live order tracking
+│   │   ├── orders.tsx          # Order history
+│   │   └── AdminDashboard.tsx # Admin metrics
 │   ├── component/
-│   │   ├── atoms/               # Basic UI components
-│   │   │   ├── Badge.tsx
+│   │   ├── atoms/              # Basic components
 │   │   │   ├── Button.tsx
+│   │   │   ├── Badge.tsx
 │   │   │   ├── Input.tsx
 │   │   │   └── Spinner.tsx
-│   │   ├── molecules/           # Composite components
-│   │   │   ├── CartItem.tsx
+│   │   ├── molecules/          # Composite components
 │   │   │   ├── ProductCard.tsx
+│   │   │   ├── CartItem.tsx
 │   │   │   └── SearchBar.tsx
-│   │   └── organisms/           # Complex components
+│   │   └── organisms/          # Complex components
 │   │       ├── Header.tsx
 │   │       ├── SupportPanel.tsx
 │   │       └── UserLogin.tsx
-│   ├── lib/
-│   │   ├── api.ts              # Backend API client
-│   │   ├── config.ts           # API configuration
-│   │   ├── format.ts           # Formatting utilities
-│   │   ├── router.tsx          # Route configuration
-│   │   ├── sse-client.ts       # SSE connection manager
-│   │   └── store.ts            # Zustand stores
-│   ├── pages/
-│   │   ├── AdminDashboard.tsx  # Admin dashboard
-│   │   ├── catalog.tsx         # Product catalog
-│   │   ├── product.tsx         # Product detail
-│   │   ├── cart.tsx            # Shopping cart
-│   │   ├── checkout.tsx        # Checkout flow
-│   │   ├── orders.tsx          # Order history
-│   │   └── order-status.tsx    # Order tracking (SSE)
-│   ├── test/
-│   │   └── setup.ts            # Test configuration
 │   ├── app.tsx                 # Root component
-│   ├── main.tsx                # Entry point
-│   └── index.css               # Global styles
-├── .env                        # Environment variables (gitignored)
-├── .env.example                # Environment template
+│   ├── main.tsx               # Entry point
+│   └── index.css              # Tailwind styles
 ├── package.json
-├── tsconfig.json
 ├── vite.config.ts
-├── vitest.config.ts
+├── tsconfig.json
+├── vitest.config.js
+├── postcss.config.js
 ├── tailwind.config.js
-└── README.md
+└── .env.example
+```
+
+**Design Pattern:** Atomic Design (Atoms → Molecules → Organisms → Pages)
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+
+- npm 9+
+- Backend API running (see `/apps/api/README.md`)
+
+### Installation
+```bash
+# Navigate to frontend directory
+cd apps/storefront
+
+# Install dependencies
+npm install
+
+# Copy environment template
+cp .env.example .env
+
+# Edit .env with your backend URL
+nano .env
+```
+
+### Environment Variables (example)
+```bash
+# Backend API URL
+# Development: http://localhost:5000
+# Production: https://your-api.onrender.com
+VITE_API_URL=http://localhost:5000
+
+# Debug mode (optional)
+VITE_DEBUG=false
+```
+
+### Development
+```bash
+# Start development server
+npm run dev
+
+# Server starts on http://localhost:3000
+# Hot reload enabled
+```
+
+### Build for Production
+```bash
+# Create optimized production build
+npm run build
+
+# Output directory: dist/
+# Preview build locally:
+npm run preview
 ```
 
 ---
 
-## 🎯 Key Features Walkthrough
+## 🎨 Design System
 
-### 1. User Authentication (Email-based)
+### Tailwind Configuration
 
-**No password required** - Simple email lookup for demo purposes.
-
-**Demo Accounts:**
-- **Admin accounts:**
-  - `gandalf@shoplite.com`
-  - `darth.vader@shoplite.com`
-  - `karl.sassine@shoplite.com`
-- **Regular users:**
-  - `demo@example.com` (has existing orders)
-  - `james.rodriguez@email.com`
-  - `emily.chen@techmail.com`
-
-**Flow:**
-1. Click account icon in header
-2. Enter email address
-3. System looks up customer in database
-4. User is logged in (state persists in localStorage)
-
-**Implementation:** `src/component/organisms/UserLogin.tsx`
-
-```typescript
-// User identification
-const customer = await getCustomerByEmail(email);
-setUser(customer);
+**Custom Colors:**
+```javascript
+primary: {
+  50: '#eff6ff',
+  100: '#dbeafe',
+  // ... full color scale
+  600: '#2563eb',  // Main brand color
+  900: '#1e3a8a'
+}
 ```
+
+### Component Library
+
+**Atomic Design Hierarchy:**
+
+1. **Atoms** (Basic building blocks)
+   - Button (4 variants: primary, secondary, danger, ghost)
+   - Badge (5 variants: default, success, warning, danger, info)
+   - Input (with label, error state, full-width)
+   - Spinner (3 sizes: sm, md, lg)
+
+2. **Molecules** (Simple combinations)
+   - ProductCard (image, name, price, badges, add-to-cart)
+   - CartItem (product info, quantity controls, remove)
+   - SearchBar (input + submit button)
+
+3. **Organisms** (Complex components)
+   - Header (navigation, cart count, user menu)
+   - SupportPanel (chat interface, message history)
+   - UserLogin (email lookup, profile display)
+
+4. **Pages** (Complete views)
+   - Catalog, Product, Cart, Checkout, Order Status, Admin Dashboard
 
 ---
 
-### 2. Real-time Order Tracking (SSE)
+## 🔌 Backend Integration
 
-**Live updates** using Server-Sent Events (EventSource API).
+### API Client (`lib/api.ts`)
 
-**Features:**
-- Automatic status progression for demo (PENDING → PROCESSING → SHIPPED → DELIVERED)
-- Connection management with auto-reconnect
-- Graceful error handling
-- Resource cleanup on unmount
-
-**Implementation:** `src/lib/sse-client.ts`
-
+**All backend calls go through centralized API client:**
 ```typescript
-// Connect to order stream
+// Example usage in components:
+import { listProducts, placeOrder, chatWithAssistant } from '../lib/api';
+
+// Get products
+const products = await listProducts({ search: 'laptop', limit: 20 });
+
+// Create order
+const { orderId } = await placeOrder(customerId, items);
+
+// Chat with assistant
+const response = await chatWithAssistant('What is your return policy?');
+```
+
+**Available Functions:**
+```typescript
+// Customers
+getCustomerByEmail(email: string): Promise<User>
+getCustomer(customerId: string): Promise<User>
+
+// Products
+listProducts(params?: FilterParams): Promise<Product[]>
+getProduct(id: string): Promise<Product | null>
+searchProducts(query: string): Promise<Product[]>
+getRelatedProducts(productId: string, limit?: number): Promise<Product[]>
+
+// Orders
+placeOrder(customerId: string, items: OrderItem[]): Promise<{ orderId: string; order: Order }>
+getOrder(orderId: string): Promise<Order | null>
+getCustomerOrders(customerId: string): Promise<Order[]>
+
+// Assistant
+chatWithAssistant(query: string): Promise<AssistantResponse>
+
+// Analytics
+getDailyRevenue(from: string, to: string): Promise<DailyRevenue[]>
+```
+
+### Configuration (`lib/config.ts`)
+
+**Centralized endpoint configuration:**
+```typescript
+export const config = {
+  apiUrl: API_BASE_URL,
+  
+  endpoints: {
+    customers: `${API_BASE_URL}/api/customers`,
+    products: `${API_BASE_URL}/api/products`,
+    orders: `${API_BASE_URL}/api/orders`,
+    analytics: `${API_BASE_URL}/api/analytics`,
+    dashboard: `${API_BASE_URL}/api/dashboard`,
+    assistant: `${API_BASE_URL}/api/assistant`,
+    health: `${API_BASE_URL}/health`,
+  },
+
+  timeouts: {
+    default: 50000,      // 50 seconds (Lebanon internet considerations)
+    assistant: 60000,    // 60 seconds (LLM might be slow)
+    sse: 0,              // No timeout for SSE
+  },
+  
+  sse: {
+    orderStatus: (orderId: string) => `${API_BASE_URL}/api/orders/${orderId}/stream`,
+  },
+}
+```
+
+**Why long timeouts?**  
+Given Lebanon's infrastructure challenges (unstable internet, power outages), we use generous timeouts to handle network delays gracefully.
+If render went idle the functions might be slow too.
+
+---
+
+## 📡 Real-Time Features (SSE)
+
+### SSE Client (`lib/sse-client.ts`)
+
+**Production-quality SSE connection manager:**
+```typescript
+// Usage in components:
+import { connectToOrderStream } from '../lib/sse-client';
+
 const connection = connectToOrderStream(orderId, {
   onEvent: (event) => {
-    // Update UI with new status
-    setOrder(prev => ({ ...prev, status: event.status }));
+    console.log('Status update:', event.status);
+    setOrder(prevOrder => ({ ...prevOrder, ...event }));
   },
-  onError: (error) => console.error('SSE error:', error),
-  reconnect: true,
-  maxReconnectAttempts: 3
+  
+  onError: (error) => {
+    console.error('SSE error:', error);
+    setStreamError(error.message);
+  },
+  
+  onClose: () => {
+    console.log('Connection closed');
+    setIsStreaming(false);
+  },
+  
+  reconnect: true,              // Auto-reconnect on disconnect
+  maxReconnectAttempts: 3,      // Try 3 times before giving up
 });
 
-// Cleanup
+// Cleanup on unmount
 return () => connection.close();
 ```
 
-**Usage:** Navigate to any order page (`/order/:id`) to see live tracking.
+**Features:**
+- ✅ Automatic reconnection (with exponential backoff)
+- ✅ Proper cleanup (no memory leaks)
+- ✅ Connection state tracking (CONNECTING | OPEN | CLOSED)
+- ✅ Error handling with user feedback
+- ✅ Event parsing and validation
 
----
+### Order Tracking Page
 
-### 3. AI Support Assistant (Karobot)
+**Real-time status updates:**
 
-**Intelligent context-aware assistant** with personality.
+1. **User visits** `/order/:id`
+2. **Component mounts** → Connects to SSE endpoint
+3. **Backend automatically progresses** status every 4-7 seconds:
+   - PENDING → PROCESSING → SHIPPED → DELIVERED
+4. **Frontend updates** progress bar in real-time
+5. **Connection closes** when order DELIVERED
+6. **Cleanup** on component unmount
 
-**Capabilities:**
-- **Intent Detection** - Classifies user queries into 7+ categories
-- **Function Calling** - Invokes backend functions for order status, product search
-- **Knowledge Grounding** - Answers policy questions with citations
-- **Personality** - Named "Karobot", never reveals underlying AI model
-- **Multi-turn Conversations** - Maintains context
-
-**Intent Types:**
-- `policy_question` - Returns policy, shipping, warranties
-- `order_status` - Order tracking queries
-- `product_search` - Product searches
-- `complaint` - Customer complaints/issues
-- `chitchat` - Greetings, small talk
-- `off_topic` - Unrelated queries
-- `violation` - Inappropriate content
-
-**Implementation:** `src/component/organisms/SupportPanel.tsx`
-
+**Visual indicator:**
 ```typescript
-// Send query to assistant
-const response = await chatWithAssistant(userQuery);
-
-// Display response with metadata
-<Message
-  content={response.text}
-  intent={response.intent}
-  citations={response.citations}
-  confidence={response.confidence}
-/>
+{isStreaming ? (
+  <span className="flex items-center gap-2">
+    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+    Live tracking active
+  </span>
+) : (
+  'Your order details'
+)}
 ```
 
-**Try asking:**
-- "What's your return policy?"
-- "Track order [ORDER_ID]"
-- "Show me laptops under $1000"
-- "Hello!"
-
 ---
 
-### 4. Admin Dashboard
+## 🤖 Karobot Assistant Integration
 
-**Real-time metrics and monitoring** for admin users.
+### Support Panel (`component/organisms/SupportPanel.tsx`)
 
-**Access:** Login with admin account → Navigate to `/admin`
-
-**Metrics Displayed:**
-- **Business:** Total revenue, order count, avg order value, orders by status
-- **Performance:** API latency, active SSE connections, request counts
-- **Assistant:** Total queries, intent distribution, function call stats
-- **System Health:** Database, API, LLM service status
-
-**Auto-refresh:** Every 10 seconds
-
-**Implementation:** `src/pages/AdminDashboard.tsx`
-
----
-
-### 5. Shopping Cart (Persistent)
+**Full-featured chat interface:**
+```typescript
+const handleSubmit = async (e: FormEvent) => {
+  e.preventDefault();
+  
+  // Add user message to chat
+  setMessages(prev => [...prev, { role: 'user', content: query }]);
+  
+  // Call backend assistant
+  const response = await chatWithAssistant(query);
+  
+  // Add assistant response with metadata
+  setMessages(prev => [...prev, {
+    role: 'assistant',
+    content: response.text,
+    intent: response.intent,              // Shows intent type
+    citations: response.citations,        // Policy sources
+    confidence: response.confidence,      // high/medium/low
+    processingTime: response.processingTime,  // Response time in ms
+  }]);
+};
+```
 
 **Features:**
-- Add/remove products
-- Quantity management
-- Real-time subtotal calculation
-- Persists across browser sessions (localStorage)
-- Free shipping over $50
+- ✅ Message history (preserved in component state)
+- ✅ Intent badges (shows classification)
+- ✅ Confidence indicators (color-coded)
+- ✅ Citation display (shows `[PolicyID]`)
+- ✅ Processing time (for performance monitoring)
+- ✅ Auto-scroll to latest message
+- ✅ Loading indicators
+- ✅ Error handling with fallback messages
+- ✅ Escape key to close
+- ✅ Focus management
 
-**Implementation:** Uses Zustand with persistence middleware
+**Example Interaction:**
+```
+User: "What's your return policy?"
 
+Karobot: "Items can be returned within 30 days of purchase 
+with original receipt. All items must be in original condition 
+with tags attached. Refunds are processed within 5-7 business 
+days."
+
+[Badges shown:]
+✓ policy_question
+✓ high confidence
+✓ Sources: Policy9.1
+✓ 1,234ms
+```
+
+---
+
+## 👤 User Authentication
+
+### Simple Email-Based Identification
+
+**No passwords, no complex auth—just email lookup:**
 ```typescript
-// Cart store
-export const useCartStore = create<CartStore>()(
+// In UserLogin.tsx
+const handleSubmit = async (e: FormEvent) => {
+  e.preventDefault();
+  
+  // Call backend to find customer by email
+  const customer = await getCustomerByEmail(email);
+  
+  // Save to Zustand store
+  setUser(customer);
+  
+  // Close modal
+  onClose?.();
+};
+```
+
+**User Store (Zustand):**
+```typescript
+interface UserStore {
+  user: User | null;
+  setUser: (user: User | null) => void;
+  clearUser: () => void;
+  isAuthenticated: () => boolean;
+  isAdmin: () => boolean;  // Check if user has admin role
+}
+
+// Usage in components:
+const { user, isAuthenticated, isAdmin } = useUserStore();
+
+if (!isAuthenticated()) {
+  return <LoginPrompt />;
+}
+
+if (isAdmin()) {
+  return <AdminDashboard />;
+}
+```
+
+**Test Accounts:**
+
+| Email | Name | Role | Notes |
+|-------|------|------|-------|
+| `demo@example.com` | Sarah Mitchell | User | Has 3 orders (for testing) |
+| `gandalf@shoplite.com` | Gandalf the Grey | Admin | Dashboard access |
+| `darth.vader@shoplite.com` | Darth Vader | Admin | Dashboard access |
+| `karl.sassine@shoplite.com` | Karl Sassine | Admin | Dashboard access |
+
+---
+
+## 📊 Admin Dashboard
+
+### Role-Based Access Control
+```typescript
+// In AdminDashboard.tsx
+useEffect(() => {
+  if (!isAuthenticated()) {
+    setError('Please login to access the dashboard');
+    return;
+  }
+  
+  if (!isAdmin()) {
+    setError('Access denied. Admin privileges required.');
+    return;
+  }
+  
+  loadAllMetrics();
+}, [isAuthenticated, isAdmin]);
+```
+
+### Dashboard Features
+
+**1. Business Metrics:**
+- Total revenue (all-time)
+- Total orders count
+- Average order value
+- Revenue trend chart (last 7 days)
+- Orders by status breakdown
+
+**2. Performance Monitoring:**
+- Average API latency
+- Active SSE connections
+- Failed requests count
+- Recent requests log
+
+**3. Assistant Analytics:**
+- Total queries handled
+- Intent distribution (bar chart)
+- Function calls breakdown
+- Average response time per intent
+- Error rate
+
+**4. System Health:**
+- Database status (healthy/unhealthy)
+- API server status
+- LLM service status
+- SSE connections status
+
+**Auto-refresh:**
+```typescript
+// Dashboard updates every 10 seconds
+useEffect(() => {
+  loadAllMetrics();
+  const interval = setInterval(loadAllMetrics, 10000);
+  return () => clearInterval(interval);
+}, []);
+```
+
+---
+
+## 🛒 Shopping Flow
+
+### Complete User Journey
+```
+1. Browse Catalog
+   ↓
+2. Search/Filter Products
+   ↓
+3. View Product Details
+   ↓
+4. Add to Cart
+   ↓
+5. View Cart (adjust quantities)
+   ↓
+6. Login (email identification)
+   ↓
+7. Checkout (review order)
+   ↓
+8. Place Order (backend creates order)
+   ↓
+9. Order Status Page (SSE connects)
+   ↓
+10. Live Tracking (auto-updates every 4-7s)
+    ↓
+11. Order History (view all past orders)
+```
+
+### State Management (Zustand)
+
+**Cart Store:**
+```typescript
+const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
       items: [],
-      addItem: (product, quantity) => { /* ... */ },
+      addItem: (product, quantity = 1) => { /* ... */ },
       removeItem: (productId) => { /* ... */ },
       updateQuantity: (productId, quantity) => { /* ... */ },
-      clearCart: () => { /* ... */ }
+      clearCart: () => { /* ... */ },
+      getTotal: () => { /* ... */ },
+      getItemCount: () => { /* ... */ },
     }),
-    { name: 'shoplite-cart' }
+    {
+      name: 'shoplite-cart',  // localStorage key
+      partialize: (state) => ({ items: state.items }),
+    }
   )
 );
 ```
 
+**Features:**
+- ✅ Persists to localStorage (survives refresh)
+- ✅ Stock quantity limits (can't add more than available)
+- ✅ Automatic total calculation
+- ✅ Item count for header badge
+
 ---
 
-## 🧪 Testing (frontend)
+## 🎯 Key Pages
 
-same as week 4 so no changes
+### Catalog Page (`pages/catalog.tsx`)
+
+**Features:**
+- Product grid (responsive: 1-4 columns)
+- Search bar (searches name, description, tags)
+- Category filter dropdown
+- Tag filter dropdown
+- Sort options (price: low-high, high-low)
+- Pagination with results count
+- Loading states
+- Empty state with clear filters button
+
+### Product Page (`pages/product.tsx`)
+
+**Features:**
+- Large product image
+- Product name and description
+- Price display
+- Category and tag badges
+- Stock indicator (with low stock warning)
+- Quantity selector (with min/max validation)
+- Add to cart button (disabled if out of stock)
+- Related products section (based on tags)
+- Breadcrumb navigation
+
+### Checkout Page (`pages/checkout.tsx`)
+
+**Features:**
+- Customer information display (read-only)
+- Shipping address (from customer profile)
+- Order summary (items, subtotal, tax, shipping, total)
+- Free shipping indicator (over $50)
+- Demo mode notice (no real payment)
+- Place order button (creates order via API)
+- Loading state during order creation
+- Error handling with user feedback
+- Auto-redirects to order status page on success
+
+### Order Status Page (`pages/order-status.tsx`)
+
+**Features:**
+- Order details (ID, date, total, items)
+- Live status indicator (green pulsing dot when streaming)
+- Progress timeline (visual status progression)
+- Carrier and tracking information
+- Estimated delivery date
+- SSE connection (auto-connects on mount)
+- Auto-reconnection (up to 3 attempts)
+- Error handling (shows "last known status" if connection fails)
+- Cleanup on unmount (no memory leaks)
 
 ---
 
-## 📱 Browser Compatibility
+## 🧪 Testing Frontend
 
-### Supported Browsers
+### Manual Testing Checklist
 
-- ✅ Chrome 90+
-- ✅ Firefox 88+
-- ✅ Safari 14+
-- ✅ Edge 90+
+**Basic Flow:**
+```bash
+# 1. Start frontend
+npm run dev
 
-### Required Features
+# 2. Visit http://localhost:3000
+# 3. Should see product catalog
+```
 
-- **ES2020** - Modern JavaScript
-- **EventSource API** - For SSE (real-time tracking)
-- **localStorage** - For cart/user persistence
-- **Fetch API** - For HTTP requests
+**User Flow Test:**
+1. ✅ Browse products → Products load and display correctly
+2. ✅ Search "laptop" → Filters products
+3. ✅ Click product → Shows product details
+4. ✅ Add to cart → Cart count increases in header
+5. ✅ View cart → Shows added items
+6. ✅ Click checkout → Prompts for login
+7. ✅ Login with `demo@example.com` → Shows customer name in header
+8. ✅ Complete checkout → Creates order
+9. ✅ Order status page → SSE connects (see green dot)
+10. ✅ Watch status updates → Progress bar moves automatically
+11. ✅ Click Support → Chat panel opens
+12. ✅ Ask "What's your return policy?" → Response with `[Policy9.1]`
 
-### Mobile Support
+**Admin Test:**
+1. ✅ Login as `gandalf@shoplite.com`
+2. ✅ Red "Admin" badge appears in header
+3. ✅ "Dashboard" link visible in header
+4. ✅ Click Dashboard → Loads all 4 metric sections
+5. ✅ Wait 10 seconds → Dashboard auto-refreshes
+6. ✅ Intent distribution chart → Bar chart visible
 
-- ✅ iOS Safari 14+
-- ✅ Chrome Mobile 90+
-- ✅ Samsung Internet 14+
+### Browser Console Tests
+```javascript
+// Test API connection
+fetch('http://localhost:5000/health')
+  .then(r => r.json())
+  .then(console.log);
 
-**Fully responsive design** tested on:
-- iPhone SE (375px)
-- iPhone 12 Pro (390px)
-- iPad (768px)
-- Desktop (1920px+)
+// Test Zustand store
+const store = window.__ZUSTAND_STORE__;
+console.log('Cart items:', store.cart.items);
+console.log('User:', store.user);
+```
+
+---
+
+## 🔧 Troubleshooting
+
+### "Failed to fetch products"
+
+**Cause:** Backend not running or CORS issue
+
+**Fix:**
+```bash
+# 1. Check backend is running
+curl http://localhost:5000/health
+
+# 2. Check .env has correct API URL
+cat .env
+# Should show: VITE_API_URL=http://localhost:5000
+
+# 3. Restart frontend (Vite needs restart for .env changes)
+npm run dev
+```
+
+### "SSE connection failed"
+
+**Cause:** Order doesn't exist or already DELIVERED
+
+**Fix:**
+```bash
+# 1. Create a new order first (through checkout)
+# 2. Use that order ID for tracking
+# 3. Or check backend logs for SSE errors
+```
+
+### "Support chat not responding"
+
+**Possible causes:**
+1. **Backend /api/assistant/chat not working**
+```bash
+   # Test endpoint
+   curl -X POST http://localhost:5000/api/assistant/chat \
+     -H "Content-Type: application/json" \
+     -d '{"query":"hello"}'
+```
+
+2. **LLM endpoint down** → Assistant uses fallback (still works, just less natural)
+
+3. **Network timeout** → Check `config.ts` timeouts (currently 60s for assistant)
+
+### "Dashboard shows no data"
+
+**Cause:** No orders in database or wrong user role
+
+**Fix:**
+```bash
+# 1. Seed database
+cd apps/api
+node seed.js
+
+# 2. Login as admin user
+# gandalf@shoplite.com (not demo@example.com)
+
+# 3. Check backend dashboard endpoints
+curl http://localhost:5000/api/dashboard/business-metrics
+```
+
+---
+
+## 📦 Dependencies
+```json
+{
+  "react": "^18.2.0",           // UI library
+  "react-dom": "^18.2.0",
+  "react-router-dom": "^6.20.0", // Routing
+  "zustand": "^4.4.7",          // State management
+  "clsx": "^2.0.0",             // Conditional classes
+  "typescript": "^5.3.3",       // Type safety
+  
+  // Development
+  "vite": "^5.0.8",             // Build tool
+  "tailwindcss": "^3.4.0",      // CSS framework
+  "@vitejs/plugin-react": "^4.2.1"
+}
+```
 
 ---
 
 ## 🚀 Deployment
 
-### Vercel 
+See `docs/deployment-guide.md` for complete Vercel deployment instructions.
 
-Deployed on https://livedrop-karl-sassine.vercel.app
+---
 
-## 📊 Performance Optimization
+## 🎨 Customization
 
-### Bundle Size
+### Change Brand Color
 
-Current production bundle (gzipped):
-- Vendor chunk: ~150KB
-- App code: ~30KB
-- Total: ~180KB
-
-### Code Splitting
-
-Automatic route-based splitting via React Router:
-
-```typescript
-// Lazy load pages
-const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
+**Edit `tailwind.config.js`:**
+```javascript
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          // Change these values
+          600: '#your-color',  // Main brand color
+        }
+      }
+    }
+  }
+}
 ```
 
-### Image Optimization
+### Add New Page
 
-- Use `loading="lazy"` for product images
-- Optimize images before upload (WebP format recommended)
-- Consider using CDN for image delivery
+1. **Create page component:**
+```typescript
+   // src/pages/my-page.tsx
+   export default function MyPage() {
+     return <div>My Page</div>;
+   }
+```
+
+2. **Add route:**
+```typescript
+   // src/lib/router.tsx
+   {
+     path: 'my-page',
+     element: <MyPage />,
+   }
+```
+
+3. **Add navigation link:**
+```typescript
+   // src/component/organisms/Header.tsx
+   <Link to="/my-page">My Page</Link>
+```
 
 ---
 
-### 📋 Test Accounts
+## 📝 Code Style
 
-**Admin (Dashboard Access):**
-- gandalf@shoplite.com
-- darth.vader@shoplite.com
-- karl.sassine@shoplite.com
+**TypeScript + Functional Components:**
+```typescript
+// Prefer functional components with hooks
+export default function MyComponent() {
+  const [state, setState] = useState<Type>(initialValue);
+  
+  useEffect(() => {
+    // Side effects
+  }, [dependencies]);
+  
+  return <div>...</div>;
+}
+```
 
-**Regular User (With Orders):**
-- demo@example.com
+**Atomic Design:**
+- **Atoms** → Single-purpose, no dependencies
+- **Molecules** → Combine atoms, simple logic
+- **Organisms** → Complex, may call APIs
+- **Pages** → Route-level components
 
-**Regular Users (No Orders):**
-- james.rodriguez@email.com
-- emily.chen@techmail.com
-...
+**State Management:**
+- **Local state** → `useState` for component-only data
+- **Global state** → Zustand stores for cart, user
+- **Server state** → Direct API calls (no caching library needed)
+
 ---
+
+## 🏆 Production Features
+
+- ✅ **Type Safety**: Full TypeScript coverage
+- ✅ **Error Boundaries**: Graceful error handling
+- ✅ **Loading States**: Spinners and skeleton screens
+- ✅ **Empty States**: Helpful messages and CTAs
+- ✅ **Responsive Design**: Mobile-first approach
+- ✅ **Accessibility**: ARIA labels, keyboard navigation
+- ✅ **Performance**: Code splitting, lazy loading
+- ✅ **SEO**: Meta tags, semantic HTML
+- ✅ **Analytics Ready**: Easy to add tracking
+
+---
+
 
