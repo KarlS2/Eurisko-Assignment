@@ -1,5 +1,4 @@
 // src/pages/AdminDashboard.tsx
-// Admin dashboard with role-based access control
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -28,8 +27,6 @@ interface PerformanceMetrics {
   activeSSEConnections?: number;
   failedRequests?: number;
   lastUpdate?: string;
-  recentRequests?: Array<{ endpoint: string; duration: number; timestamp: string }>;
-  topEndpoints?: Array<{ endpoint: string; count: number; avgLatency: number }>;
 }
 
 interface AssistantMetrics {
@@ -51,7 +48,6 @@ export default function AdminDashboard() {
   const [error, setError] = useState('');
   const [lastRefresh, setLastRefresh] = useState(new Date());
 
-  // Access control check
   useEffect(() => {
     if (!isAuthenticated()) {
       setError('Please login to access the dashboard');
@@ -67,7 +63,6 @@ export default function AdminDashboard() {
 
     loadAllMetrics();
     
-    // Auto-refresh every 10 seconds
     const interval = setInterval(loadAllMetrics, 10000);
     return () => clearInterval(interval);
   }, [isAuthenticated, isAdmin]);
@@ -97,9 +92,7 @@ export default function AdminDashboard() {
 
   async function fetchBusinessMetrics(): Promise<BusinessMetrics> {
     const response = await fetch(`${config.endpoints.dashboard}/business-metrics`, {
-      headers: {
-        'x-user-email': user?.email || '',
-      },
+      headers: { 'x-user-email': user?.email || '' },
     });
     
     if (response.status === 403) {
@@ -113,14 +106,10 @@ export default function AdminDashboard() {
 
   async function fetchPerformanceMetrics(): Promise<PerformanceMetrics> {
     const response = await fetch(`${config.endpoints.dashboard}/performance`, {
-      headers: {
-        'x-user-email': user?.email || '',
-      },
+      headers: { 'x-user-email': user?.email || '' },
     });
     
-    if (response.status === 403) {
-      throw new Error('Access denied');
-    }
+    if (response.status === 403) throw new Error('Access denied');
     if (!response.ok) throw new Error('Failed to fetch performance metrics');
     
     const data = await response.json();
@@ -133,30 +122,24 @@ export default function AdminDashboard() {
     return response.json();
   }
 
-  // Access denied screen
   if (!isAuthenticated() || !isAdmin()) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[400px] gap-4">
-        <div className="text-6xl">🔒</div>
-        <h2 className="text-2xl font-bold text-gray-900">Access Denied</h2>
-        <p className="text-gray-600 text-center max-w-md">
+      <div className="flex flex-col items-center justify-center min-h-[400px] gap-4 px-4">
+        <div className="text-4xl sm:text-6xl">🔒</div>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 text-center">Access Denied</h2>
+        <p className="text-sm sm:text-base text-gray-600 text-center max-w-md">
           {!isAuthenticated() 
             ? 'Please login with an admin account to access the dashboard.'
             : 'You need admin privileges to access this dashboard.'}
         </p>
-        <div className="flex gap-3 mt-4">
-          <Button onClick={() => navigate('/')} variant="secondary">
+        <div className="flex flex-col sm:flex-row gap-3 mt-4 w-full sm:w-auto">
+          <Button onClick={() => navigate('/')} variant="secondary" fullWidth>
             Go to Catalog
           </Button>
-          {!isAuthenticated() && (
-            <Button onClick={() => {/* Open login modal */}} variant="primary">
-              Login
-            </Button>
-          )}
         </div>
-        <div className="mt-6 text-xs text-gray-500">
-          <p>Admin accounts:</p>
-          <ul className="mt-1 space-y-1">
+        <div className="mt-6 text-xs text-gray-500 text-center">
+          <p className="mb-1">Admin accounts:</p>
+          <ul className="space-y-1">
             <li>• gandalf@shoplite.com</li>
             <li>• darth.vader@shoplite.com</li>
             <li>• karl.sassine@shoplite.com</li>
@@ -170,7 +153,7 @@ export default function AdminDashboard() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[400px] gap-4">
         <Spinner size="lg" />
-        <p className="text-gray-600">Loading dashboard...</p>
+        <p className="text-sm sm:text-base text-gray-600">Loading dashboard...</p>
       </div>
     );
   }
@@ -183,21 +166,21 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="space-y-6">
-      {/* Header with Admin Badge */}
-      <div className="flex items-center justify-between">
-        <div>
-          <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
+    <div className="space-y-6 px-2 sm:px-0">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex-1 min-w-0">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Admin Dashboard</h1>
             <Badge variant="danger" size="md">
-              👑 {user?.name}
+              👑 {user?.name?.split(' ')[0] || user?.name}
             </Badge>
           </div>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-xs sm:text-sm text-gray-500 mt-1">
             Last updated: {lastRefresh.toLocaleTimeString()}
           </p>
         </div>
-        <Button onClick={loadAllMetrics} variant="primary" size="md">
+        <Button onClick={loadAllMetrics} variant="primary" size="md" className="w-full sm:w-auto">
           <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
@@ -206,18 +189,17 @@ export default function AdminDashboard() {
       </div>
 
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-          <p className="text-red-800 text-sm">{error}</p>
+        <div className="bg-red-50 border border-red-200 rounded-lg p-3 sm:p-4">
+          <p className="text-red-800 text-xs sm:text-sm">{error}</p>
         </div>
       )}
 
       {/* Business Metrics */}
       {businessMetrics && (
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-gray-900">Business Metrics</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Business Metrics</h2>
 
-          {/* Key Metrics Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <MetricCard
               title="Total Revenue"
               value={formatCurrency(businessMetrics.totalRevenue)}
@@ -238,16 +220,15 @@ export default function AdminDashboard() {
             />
           </div>
 
-          {/* Orders by Status */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Orders by Status</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6">
+            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4">Orders by Status</h3>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {Object.entries(businessMetrics.ordersByStatus).map(([status, count]) => (
                 <div key={status} className="text-center">
                   <Badge variant={statusColors[status] || 'info'} size="md">
                     {status}
                   </Badge>
-                  <p className="text-2xl font-bold text-gray-900 mt-2">{count}</p>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900 mt-2">{count}</p>
                 </div>
               ))}
             </div>
@@ -258,9 +239,9 @@ export default function AdminDashboard() {
       {/* Performance Metrics */}
       {performanceMetrics && (
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-gray-900">Performance Monitoring</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Performance</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <MetricCard
               title="Avg API Latency"
               value={`${performanceMetrics.avgLatency || performanceMetrics.avgApiLatency || 0}ms`}
@@ -268,7 +249,7 @@ export default function AdminDashboard() {
               status={(performanceMetrics.avgLatency || performanceMetrics.avgApiLatency || 0) < 100 ? 'good' : 'warning'}
             />
             <MetricCard
-              title="Active SSE Connections"
+              title="Active SSE"
               value={(performanceMetrics.activeSSEConnections || performanceMetrics.sseConnections || 0).toString()}
               icon="🔗"
             />
@@ -284,9 +265,9 @@ export default function AdminDashboard() {
       {/* Assistant Analytics */}
       {assistantMetrics && (
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-gray-900">Assistant Analytics</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Assistant Analytics</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             <MetricCard
               title="Total Queries"
               value={assistantMetrics.totalQueries.toString()}
@@ -313,17 +294,17 @@ export default function AdminDashboard() {
 
           {/* Intent Distribution */}
           {Object.keys(assistantMetrics.intentDistribution).length > 0 && (
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">Intent Distribution</h3>
+            <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4">Intent Distribution</h3>
               <div className="space-y-2">
                 {Object.entries(assistantMetrics.intentDistribution)
                   .sort(([, a], [, b]) => b - a)
                   .map(([intent, count]) => (
-                    <div key={intent} className="flex items-center gap-4">
-                      <span className="text-sm text-gray-700 w-32 capitalize">
+                    <div key={intent} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                      <span className="text-xs sm:text-sm text-gray-700 sm:w-32 capitalize font-medium">
                         {intent.replace('_', ' ')}
                       </span>
-                      <div className="flex-1 bg-gray-200 rounded-full h-6 relative overflow-hidden">
+                      <div className="flex-1 bg-gray-200 rounded-full h-6 sm:h-7 relative overflow-hidden">
                         <div
                           className="bg-blue-600 h-full rounded-full transition-all duration-500"
                           style={{
@@ -342,13 +323,13 @@ export default function AdminDashboard() {
 
           {/* Function Calls */}
           {Object.keys(assistantMetrics.functionCalls).length > 0 && (
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">Function Calls Breakdown</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4">Function Calls</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {Object.entries(assistantMetrics.functionCalls).map(([func, count]) => (
-                  <div key={func} className="text-center p-4 bg-gray-50 rounded-lg">
-                    <p className="text-sm font-medium text-gray-600 mb-1">{func}</p>
-                    <p className="text-2xl font-bold text-gray-900">{count}</p>
+                  <div key={func} className="text-center p-3 sm:p-4 bg-gray-50 rounded-lg">
+                    <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1 truncate">{func}</p>
+                    <p className="text-xl sm:text-2xl font-bold text-gray-900">{count}</p>
                   </div>
                 ))}
               </div>
@@ -358,9 +339,9 @@ export default function AdminDashboard() {
       )}
 
       {/* System Health */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">System Health</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6">
+        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4">System Health</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           <HealthCheck label="Database" status="healthy" />
           <HealthCheck label="API Server" status="healthy" />
           <HealthCheck
@@ -395,17 +376,17 @@ function MetricCard({ title, value, icon, trend, status }: MetricCardProps) {
 
   return (
     <div
-      className={`bg-white rounded-lg border p-6 ${
+      className={`bg-white rounded-lg border p-4 sm:p-6 ${
         status ? statusColors[status] : 'border-gray-200'
       }`}
     >
       <div className="flex items-center justify-between mb-2">
-        <span className="text-gray-600 text-sm font-medium">{title}</span>
-        <span className="text-2xl">{icon}</span>
+        <span className="text-gray-600 text-xs sm:text-sm font-medium truncate pr-2">{title}</span>
+        <span className="text-xl sm:text-2xl flex-shrink-0">{icon}</span>
       </div>
-      <p className="text-3xl font-bold text-gray-900">{value}</p>
+      <p className="text-2xl sm:text-3xl font-bold text-gray-900 break-all">{value}</p>
       {trend && (
-        <p className="text-sm text-green-600 mt-1 font-medium">{trend} from last week</p>
+        <p className="text-xs sm:text-sm text-green-600 mt-1 font-medium">{trend} from last week</p>
       )}
     </div>
   );
@@ -428,12 +409,12 @@ function HealthCheck({ label, status }: HealthCheckProps) {
 
   return (
     <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-      <span className="text-sm font-medium text-gray-700">{label}</span>
-      <div className="flex items-center gap-2">
-        <span className={`w-8 h-8 rounded-full ${config.bg} flex items-center justify-center font-bold ${config.color}`}>
+      <span className="text-xs sm:text-sm font-medium text-gray-700 truncate pr-2">{label}</span>
+      <div className="flex items-center gap-2 flex-shrink-0">
+        <span className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full ${config.bg} flex items-center justify-center font-bold ${config.color} text-sm sm:text-base`}>
           {config.icon}
         </span>
-        <span className={`text-sm font-medium capitalize ${config.color}`}>{status}</span>
+        <span className={`text-xs sm:text-sm font-medium capitalize ${config.color}`}>{status}</span>
       </div>
     </div>
   );
