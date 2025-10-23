@@ -96,7 +96,7 @@ A fully responsive, production-ready React + TypeScript storefront with real-tim
 ### 1. Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone (https://github.com/KarlS2/livedrop--KarlSassine)
 cd storefront
 ```
 
@@ -118,10 +118,10 @@ Edit `.env`:
 
 ```env
 # Development (local backend)
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=http://localhost:3000
 
 # Production (deployed backend)
-# VITE_API_URL=https://your-backend.onrender.com
+# VITE_API_URL=https://livedrop-karlsassine.onrender.com
 ```
 
 ### 4. Start Development Server
@@ -130,7 +130,7 @@ VITE_API_URL=http://localhost:5000
 npm run dev
 ```
 
-Application will be available at `http://localhost:5173`
+Application will be available at `http://localhost:3000`
 
 ---
 
@@ -370,65 +370,9 @@ export const useCartStore = create<CartStore>()(
 
 ---
 
-## 🧪 Testing
+## 🧪 Testing (frontend)
 
-### Run Tests
-
-```bash
-# Run all tests
-npm test
-
-# Run tests in watch mode
-npm run test
-
-# Run tests with UI
-npm run test:ui
-```
-
-### Test Structure
-
-```
-src/test/
-├── setup.ts                 # Global test setup
-└── [component].test.tsx     # Component tests (to be added)
-```
-
-### Test Configuration
-
-**Vitest** is configured with:
-- **jsdom** environment for DOM testing
-- **@testing-library/react** for component testing
-- **@testing-library/jest-dom** for assertions
-
-**Example test:**
-
-```typescript
-import { render, screen } from '@testing-library/react';
-import Button from '../component/atoms/Button';
-
-test('Button renders correctly', () => {
-  render(<Button>Click me</Button>);
-  expect(screen.getByText('Click me')).toBeInTheDocument();
-});
-```
-
----
-
-## 🎨 Storybook
-
-Run component development environment:
-
-```bash
-npm run storybook
-```
-
-Opens at `http://localhost:6006`
-
-### Build Storybook
-
-```bash
-npm run build-storybook
-```
+same as week 4 so no changes
 
 ---
 
@@ -464,121 +408,9 @@ npm run build-storybook
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
+### Vercel 
 
-**Automatic deployment from GitHub:**
-
-1. **Connect Repository**
-   - Go to [vercel.com](https://vercel.com)
-   - Import your GitHub repository
-
-2. **Configure Build**
-   - Framework: Vite
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-
-3. **Environment Variables**
-   ```
-   VITE_API_URL=https://your-backend.onrender.com
-   ```
-
-4. **Deploy**
-   - Click "Deploy"
-   - Vercel will automatically deploy on every push to `main`
-
-### Netlify
-
-1. **Connect Repository**
-   - Go to [netlify.com](https://netlify.com)
-   - New site from Git
-
-2. **Build Settings**
-   - Build command: `npm run build`
-   - Publish directory: `dist`
-
-3. **Environment Variables**
-   ```
-   VITE_API_URL=https://your-backend.onrender.com
-   ```
-
-### Manual Build
-
-```bash
-# Build for production
-npm run build
-
-# Preview production build locally
-npm run preview
-```
-
-Output in `dist/` directory.
-
----
-
-## 🔧 Troubleshooting
-
-### Backend Connection Issues
-
-**Problem:** "Network error: Cannot reach API server"
-
-**Solutions:**
-1. Check `.env` file has correct `VITE_API_URL`
-2. Verify backend is running: `curl http://localhost:5000/health`
-3. Check for CORS issues in browser console
-4. Ensure backend allows requests from frontend origin
-
-### SSE Not Working
-
-**Problem:** Order status not updating in real-time
-
-**Solutions:**
-1. Verify backend SSE endpoint: `/api/orders/:id/stream`
-2. Check browser supports EventSource API
-3. Check network tab for SSE connection (type: eventsource)
-4. Verify order exists in database
-5. Check console for SSE errors
-
-### Cart Not Persisting
-
-**Problem:** Cart empties on page refresh
-
-**Solutions:**
-1. Check browser allows localStorage
-2. Clear localStorage and try again: `localStorage.clear()`
-3. Check for errors in browser console
-4. Verify Zustand persist middleware is configured
-
-### Assistant Not Responding
-
-**Problem:** Support panel shows error
-
-**Solutions:**
-1. Verify backend `/api/assistant/chat` endpoint is running
-2. Check backend LLM service (Colab/ngrok) is accessible
-3. Check assistant metrics endpoint: `/api/assistant/metrics`
-4. Increase timeout in `src/lib/config.ts` if slow responses
-
-### Build Errors
-
-**Problem:** TypeScript compilation errors
-
-**Solutions:**
-1. Clear node_modules: `rm -rf node_modules && npm install`
-2. Clear TypeScript cache: `rm -rf node_modules/.vite`
-3. Check TypeScript version: `npx tsc --version` (should be 5.3+)
-4. Verify all dependencies installed: `npm install`
-
-### Mobile Layout Issues
-
-**Problem:** UI not responsive on mobile
-
-**Solutions:**
-1. Test with browser DevTools mobile emulation
-2. Check viewport meta tag in `index.html`
-3. Verify Tailwind responsive classes (`sm:`, `md:`, `lg:`)
-4. Test on real device, not just emulator
-
----
+Deployed on https://livedrop-karl-sassine.vercel.app
 
 ## 📊 Performance Optimization
 
@@ -606,71 +438,6 @@ const AdminDashboard = lazy(() => import('./pages/AdminDashboard'));
 
 ---
 
-## 🔐 Security Considerations
-
-### Demo Mode Warnings
-
-**This is a demo application:**
-- ❌ No real authentication (email-only identification)
-- ❌ No password hashing
-- ❌ No JWT tokens or sessions
-- ❌ No payment processing
-- ❌ Client-side role checks (not secure in production)
-
-**For production deployment:**
-- ✅ Implement proper authentication (JWT, OAuth)
-- ✅ Server-side role validation
-- ✅ HTTPS only
-- ✅ Rate limiting
-- ✅ Input sanitization
-- ✅ CSRF protection
-
-### Current Security Features
-
-- ✅ Environment variable protection (`.env` in `.gitignore`)
-- ✅ TypeScript type safety
-- ✅ CORS configuration on backend
-- ✅ Input validation on forms
-- ✅ XSS protection via React (auto-escaping)
-
----
-
-## 📞 Support
-
-For questions or issues:
-
-1. Check [Troubleshooting](#-troubleshooting) section
-2. Review backend API documentation
-3. Check browser console for errors
-4. Contact: `support@shoplite.com` (demo only)
-
----
-
-## 📝 License
-
-This project is part of Week 5 Assignment - Educational purposes only.
-
----
-
-## 🎓 Assignment Checklist
-
-### ✅ Completed Features
-
-- [x] Real backend API integration
-- [x] User identification (email lookup)
-- [x] Product catalog with search/filter
-- [x] Shopping cart with persistence
-- [x] Checkout flow
-- [x] Order history page
-- [x] Real-time order tracking (SSE)
-- [x] Intelligent support assistant (Karobot)
-- [x] Admin dashboard
-- [x] Fully responsive design
-- [x] TypeScript throughout
-- [x] Error handling
-- [x] Loading states
-- [x] Deployed to Vercel/Netlify
-
 ### 📋 Test Accounts
 
 **Admin (Dashboard Access):**
@@ -684,7 +451,6 @@ This project is part of Week 5 Assignment - Educational purposes only.
 **Regular Users (No Orders):**
 - james.rodriguez@email.com
 - emily.chen@techmail.com
-
+...
 ---
 
-**Built with ❤️ for Week 5 Assignment**
